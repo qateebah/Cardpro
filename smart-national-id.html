@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>البطاقة الذكية - الهوية الوطنية</title>
+    <link rel="stylesheet" href="smart-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="smart-id-system">
+        <!-- لوحة التحكم الرئيسية -->
+        <div class="control-panel">
+            <div class="panel-header">
+                <h2>نظام إدارة البطاقات الذكية</h2>
+                <div class="system-status">
+                    <span class="status-indicator active"></span>
+                    <span>النظام نشط</span>
+                </div>
+            </div>
+            
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="card-tab">البطاقة</button>
+                <button class="tab-btn" data-tab="database-tab">قاعدة البيانات</button>
+                <button class="tab-btn" data-tab="settings-tab">الإعدادات</button>
+                <button class="tab-btn" data-tab="help-tab">المساعدة</button>
+            </div>
+            
+            <div class="tab-content active" id="card-tab">
+                <div class="section">
+                    <h3>إنشاء بطاقة جديدة</h3>
+                    <button id="newCardBtn" class="action-btn">
+                        <i class="fas fa-id-card"></i> بطاقة جديدة
+                    </button>
+                    <button id="importCardBtn" class="action-btn">
+                        <i class="fas fa-file-import"></i> استيراد بيانات
+                    </button>
+                </div>
+                
+                <div class="section">
+                    <h3>خيارات البطاقة</h3>
+                    <div class="option-grid">
+                        <button id="flipCardBtn" class="option-btn">
+                            <i class="fas fa-sync-alt"></i> قلب البطاقة
+                        </button>
+                        <button id="changeDesignBtn" class="option-btn">
+                            <i class="fas fa-palette"></i> تغيير التصميم
+                        </button>
+                        <button id="printCardBtn" class="option-btn">
+                            <i class="fas fa-print"></i> طباعة البطاقة
+                        </button>
+                        <button id="saveCardBtn" class="option-btn">
+                            <i class="fas fa-save"></i> حفظ البطاقة
+                        </button>
+                        <button id="verifyCardBtn" class="option-btn">
+                            <i class="fas fa-shield-alt"></i> التحقق من الأمان
+                        </button>
+                        <button id="exportCardBtn" class="option-btn">
+                            <i class="fas fa-file-export"></i> تصدير كPDF
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h3>ميزات متقدمة</h3>
+                    <div class="option-grid">
+                        <button id="nfcBtn" class="option-btn">
+                            <i class="fas fa-wifi"></i> تفعيل NFC
+                        </button>
+                        <button id="biometricBtn" class="option-btn">
+                            <i class="fas fa-fingerprint"></i> مسح بيومتري
+                        </button>
+                        <button id="qrBtn" class="option-btn">
+                            <i class="fas fa-qrcode"></i> إنشاء QR Code
+                        </button>
+                        <button id="barcodeBtn" class="option-btn">
+                            <i class="fas fa-barcode"></i> إنشاء Barcode
+                        </button>
+                        <button id="encryptBtn" class="option-btn">
+                            <i class="fas fa-lock"></i> تشفير البيانات
+                        </button>
+                        <button id="watermarkBtn" class="option-btn">
+                            <i class="fas fa-stamp"></i> إضافة علامة مائية
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="database-tab">
+                <div class="database-controls">
+                    <div class="search-box">
+                        <input type="text" placeholder="ابحث في قاعدة البيانات...">
+                        <button><i class="fas fa-search"></i></button>
+                    </div>
+                    <button id="addRecordBtn" class="action-btn">
+                        <i class="fas fa-plus"></i> إضافة سجل جديد
+                    </button>
+                </div>
+                
+                <div class="database-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>رقم الهوية</th>
+                                <th>الاسم</th>
+                                <th>تاريخ الإصدار</th>
+                                <th>الحالة</th>
+                                <th>الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="databaseRows">
+                            <!-- سيتم ملؤها بواسطة JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="pagination">
+                    <button class="page-btn"><i class="fas fa-angle-double-right"></i></button>
+                    <button class="page-btn active">1</button>
+                    <button class="page-btn">2</button>
+                    <button class="page-btn">3</button>
+                    <button class="page-btn"><i class="fas fa-angle-double-left"></i></button>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="settings-tab">
+                <div class="settings-section">
+                    <h3>إعدادات النظام</h3>
+                    <div class="setting-item">
+                        <label>لغة النظام</label>
+                        <select>
+                            <option value="ar" selected>العربية</option>
+                            <option value="en">English</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <label>نمط التصميم</label>
+                        <select id="themeSelect">
+                            <option value="default">الافتراضي</option>
+                            <option value="modern">حديث</option>
+                            <option value="classic">كلاسيكي</option>
+                            <option value="dark">مظلم</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <label>جودة الطباعة</label>
+                        <input type="range" min="1" max="5" value="3">
+                    </div>
+                </div>
+                
+                <div class="settings-section">
+                    <h3>إعدادات الأمان</h3>
+                    <div class="setting-item">
+                        <label>مستوى التشفير</label>
+                        <select>
+                            <option value="low">منخفض</option>
+                            <option value="medium" selected>متوسط</option>
+                            <option value="high">عالي</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <label>تفعيل المصادقة الثنائية</label>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <label>تسجيل الخروج التلقائي</label>
+                        <input type="number" value="30" min="1"> دقيقة
+                    </div>
+                </div>
+                
+                <div class="settings-section">
+                    <h3>خيارات متقدمة</h3>
+                    <button id="backupBtn" class="action-btn">
+                        <i class="fas fa-database"></i> نسخ احتياطي
+                    </button>
+                    <button id="restoreBtn" class="action-btn">
+                        <i class="fas fa-undo"></i> استعادة
+                    </button>
+                    <button id="resetBtn" class="action-btn danger">
+                        <i class="fas fa-trash"></i> إعادة تعيين
+                    </button>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="help-tab">
+                <div class="help-section">
+                    <h3>دليل المستخدم</h3>
+                    <div class="help-item">
+                        <h4>كيفية إنشاء بطاقة جديدة</h4>
+                        <p>اضغط على زر "بطاقة جديدة" في قسم إنشاء بطاقة جديدة، ثم املأ البيانات المطلوبة.</p>
+                    </div>
+                    <div class="help-item">
+                        <h4>كيفية التحقق من صحة البطاقة</h4>
+                        <p>استخدم زر "التحقق من الأمان" لفحص جميع عناصر الأمان في البطاقة.</p>
+                    </div>
+                    <div class="help-item">
+                        <h4>تفعيل ميزة NFC</h4>
+                        <p>اضغط على زر NFC ثم قرب البطاقة من القارئ لتفعيل الاتصال.</p>
+                    </div>
+                </div>
+                
+                <div class="help-section">
+                    <h3>الدعم الفني</h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-phone"></i> 920000000</p>
+                        <p><i class="fas fa-envelope"></i> support@nationalid.sa</p>
+                        <p><i class="fas fa-globe"></i> www.nationalid.sa/support</p>
+                    </div>
+                </div>
+                
+                <div class="help-section">
+                    <h3>حول النظام</h3>
+                    <div class="system-info">
+                        <p>الإصدار: 3.2.1</p>
+                        <p>تاريخ الإصدار: 1444/10/15</p>
+                        <p>© 2023 وزارة الداخلية - المملكة العربية السعودية</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- معاينة البطاقة -->
+        <div class="card-preview">
+            <div class="preview-header">
+                <h3>معاينة البطاقة</h3>
+                <div class="zoom-controls">
+                    <button id="zoomOut"><i class="fas fa-search-minus"></i></button>
+                    <span id="zoomLevel">100%</span>
+                    <button id="zoomIn"><i class="fas fa-search-plus"></i></button>
+                </div>
+            </div>
+            
+            <div class="id-card-container">
+                <div class="id-card" id="idCard">
+                    <!-- سيتم إدراج البطاقة هنا بواسطة JavaScript -->
+                </div>
+            </div>
+            
+            <div class="card-controls">
+                <button id="rotateCardBtn" class="control-btn">
+                    <i class="fas fa-redo"></i> تدوير
+                </button>
+                <button id="randomDataBtn" class="control-btn">
+                    <i class="fas fa-random"></i> بيانات عشوائية
+                </button>
+                <button id="resetCardBtn" class="control-btn">
+                    <i class="fas fa-undo"></i> إعادة تعيين
+                </button>
+            </div>
+        </div>
+        
+        <!-- محرر البيانات -->
+        <div class="data-editor">
+            <div class="editor-header">
+                <h3>محرر البيانات</h3>
+                <div class="editor-tabs">
+                    <button class="editor-tab active" data-editor="personal-tab">البيانات الشخصية</button>
+                    <button class="editor-tab" data-editor="security-tab">بيانات الأمان</button>
+                    <button class="editor-tab" data-editor="additional-tab">بيانات إضافية</button>
+                </div>
+            </div>
+            
+            <div class="editor-content active" id="personal-tab">
+                <div class="form-group">
+                    <label>رقم الهوية</label>
+                    <input type="text" id="idNumberInput" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>الاسم الكامل</label>
+                    <input type="text" id="fullNameInput" class="form-control">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>الجنسية</label>
+                        <select id="nationalitySelect" class="form-control">
+                            <option value="SA">سعودي</option>
+                            <option value="OTHER">أخرى</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>فصيلة الدم</label>
+                        <select id="bloodTypeSelect" class="form-control">
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>تاريخ الميلاد (هجري)</label>
+                        <input type="text" id="hijriDobInput" class="form-control" placeholder="يوم/شهر/سنة">
+                    </div>
+                    <div class="form-group">
+                        <label>تاريخ الميلاد (ميلادي)</label>
+                        <input type="date" id="gregorianDobInput" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>مكان الولادة</label>
+                    <input type="text" id="pobInput" class="form-control">
+                </div>
+                <div class="form-group photo-upload">
+                    <label>الصورة الشخصية</label>
+                    <div class="upload-area" id="photoUploadArea">
+                        <i class="fas fa-camera"></i>
+                        <span>انقر لرفع الصورة</span>
+                        <input type="file" id="photoUploadInput" accept="image/*">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="editor-content" id="security-tab">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>تاريخ الإصدار</label>
+                        <input type="text" id="issueDateInput" class="form-control" placeholder="يوم/شهر/سنة">
+                    </div>
+                    <div class="form-group">
+                        <label>تاريخ الانتهاء</label>
+                        <input type="text" id="expiryDateInput" class="form-control" placeholder="يوم/شهر/سنة">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>مركز الإصدار</label>
+                    <select id="issuingCenterSelect" class="form-control">
+                        <option value="RIYADH_MAIN">الرياض - المركز الرئيسي</option>
+                        <option value="JEDDAH">جدة - فرع الغربية</option>
+                        <option value="DAMMAM">الدمام - فرع الشرقية</option>
+                        <option value="MAKKAH">مكة المكرمة - فرع العاصمة المقدسة</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>رقم الشريحة الإلكترونية</label>
+                    <input type="text" id="chipNumberInput" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>التوقيع الرسمي</label>
+                    <div class="signature-pad" id="signaturePad">
+                        <canvas id="signatureCanvas"></canvas>
+                        <div class="signature-controls">
+                            <button id="clearSignature"><i class="fas fa-eraser"></i> مسح</button>
+                            <button id="saveSignature"><i class="fas fa-save"></i> حفظ</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="editor-content" id="additional-tab">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>الحالة الاجتماعية</label>
+                        <select id="maritalStatusSelect" class="form-control">
+                            <option value="SINGLE">أعزب</option>
+                            <option value="MARRIED">متزوج</option>
+                            <option value="DIVORCED">مطلق</option>
+                            <option value="WIDOWED">أرمل</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>المهنة</label>
+                        <input type="text" id="occupationInput" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>العنوان الوطني</label>
+                    <input type="text" id="addressInput" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>رقم الجوال</label>
+                    <input type="tel" id="mobileInput" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>البريد الإلكتروني</label>
+                    <input type="email" id="emailInput" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>ملاحظات</label>
+                    <textarea id="notesInput" class="form-control" rows="3"></textarea>
+                </div>
+            </div>
+            
+            <div class="editor-footer">
+                <button id="saveDataBtn" class="editor-btn primary">
+                    <i class="fas fa-save"></i> حفظ البيانات
+                </button>
+                <button id="clearDataBtn" class="editor-btn">
+                    <i class="fas fa-trash"></i> مسح الكل
+                </button>
+                <button id="validateDataBtn" class="editor-btn success">
+                    <i class="fas fa-check-circle"></i> التحقق من البيانات
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- النوافذ المنبثقة -->
+    <div class="modal" id="nfcModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>محاكي اتصال NFC</h3>
+            <div class="nfc-animation">
+                <div class="nfc-card"></div>
+                <div class="nfc-reader"></div>
+                <div class="nfc-waves"></div>
+            </div>
+            <div class="nfc-data-display">
+                <div class="data-item">
+                    <span class="data-label">حالة الاتصال:</span>
+                    <span class="data-value" id="nfcStatus">جاري الاتصال...</span>
+                </div>
+                <div class="data-item">
+                    <span class="data-label">رقم البطاقة:</span>
+                    <span class="data-value" id="nfcCardNumber">1122334455</span>
+                </div>
+                <div class="data-item">
+                    <span class="data-label">الاسم:</span>
+                    <span class="data-value" id="nfcName">عبدالله محمد أحمد</span>
+                </div>
+                <div class="data-item">
+                    <span class="data-label">تاريخ الميلاد:</span>
+                    <span class="data-value" id="nfcDob">12/05/1405هـ</span>
+                </div>
+                <div class="data-item">
+                    <span class="data-label">الحالة:</span>
+                    <span class="data-value" id="nfcCardStatus">نشطة</span>
+                </div>
+            </div>
+            <button id="nfcCloseBtn" class="modal-btn">إغلاق</button>
+        </div>
+    </div>
+    
+    <div class="modal" id="biometricModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>نظام التحقق البيومتري</h3>
+            <div class="biometric-options">
+                <button class="bio-option active" data-type="fingerprint">
+                    <i class="fas fa-fingerprint"></i>
+                    <span>بصمة الإصبع</span>
+                </button>
+                <button class="bio-option" data-type="face">
+                    <i class="fas fa-user-circle"></i>
+                    <span>التعرف على الوجه</span>
+                </button>
+                <button class="bio-option" data-type="iris">
+                    <i class="fas fa-eye"></i>
+                    <span>بصمة العين</span>
+                </button>
+            </div>
+            
+            <div class="biometric-scanner" id="fingerprintScanner">
+                <div class="scanner-animation">
+                    <div class="fingerprint-image"></div>
+                    <div class="scan-line"></div>
+                </div>
+                <div class="scanner-instructions">
+                    <p>ضع إصبعك على الماسح الضوئي</p>
+                </div>
+                <div class="scanner-progress">
+                    <div class="progress-bar" style="width: 0%"></div>
+                </div>
+            </div>
+            
+            <div class="biometric-scanner" id="faceScanner" style="display: none;">
+                <div class="camera-preview">
+                    <video id="faceCamera" autoplay playsinline></video>
+                    <div class="face-overlay"></div>
+                </div>
+                <div class="scanner-instructions">
+                    <p>انظر مباشرة إلى الكاميرا</p>
+                </div>
+            </div>
+            
+            <div class="biometric-scanner" id="irisScanner" style="display: none;">
+                <div class="iris-animation">
+                    <div class="eye-image"></div>
+                    <div class="iris-scan"></div>
+                </div>
+                <div class="scanner-instructions">
+                    <p>اقترب من الكاميرا وانظر إلى النقطة</p>
+                </div>
+            </div>
+            
+            <div class="biometric-result" style="display: none;">
+                <div class="result-icon success">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h4>تم التحقق بنجاح</h4>
+                <p>تمت مطابقة البيانات البيومترية بنجاح</p>
+                <button class="modal-btn" id="bioCloseBtn">تم</button>
+            </div>
+            
+            <button class="modal-btn" id="startScanBtn" style="display: none;">
+                بدء المسح
+            </button>
+        </div>
+    </div>
+    
+    <div class="modal" id="qrModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>مولد QR Code</h3>
+            <div class="qr-generator">
+                <div class="qr-preview" id="qrGeneratorPreview"></div>
+                <div class="qr-controls">
+                    <div class="form-group">
+                        <label>نص QR Code</label>
+                        <textarea id="qrTextInput" class="form-control">ID:1122334455\nName:عبدالله محمد أحمد</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>لون QR Code</label>
+                        <input type="color" id="qrColorInput" value="#1a4b7a">
+                    </div>
+                    <div class="form-group">
+                        <label>حجم QR Code</label>
+                        <select id="qrSizeInput" class="form-control">
+                            <option value="80">صغير (80px)</option>
+                            <option value="120">متوسط (120px)</option>
+                            <option value="160">كبير (160px)</option>
+                        </select>
+                    </div>
+                    <button id="generateQrBtn" class="modal-btn">توليد QR</button>
+                    <button id="applyQrBtn" class="modal-btn primary">تطبيق على البطاقة</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal" id="printModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>إعدادات الطباعة</h3>
+            <div class="print-options">
+                <div class="print-preview" id="printPreview">
+                    <!-- سيتم إضافة معاينة الطباعة هنا -->
+                </div>
+                <div class="print-settings">
+                    <div class="form-group">
+                        <label>نوع الورق</label>
+                        <select id="paperType" class="form-control">
+                            <option value="plastic">بلاستيكي (بطاقة)</option>
+                            <option value="glossy">ورق لامع</option>
+                            <option value="matte">ورق غير لامع</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>حجم البطاقة</label>
+                        <select id="cardSize" class="form-control">
+                            <option value="standard">قياسي (85.6 × 54 مم)</option>
+                            <option value="id1">ID-1 (85.6 × 54 مم)</option>
+                            <option value="id2">ID-2 (105 × 74 مم)</option>
+                            <option value="id3">ID-3 (125 × 88 مم)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>عدد النسخ</label>
+                        <input type="number" id="printCopies" class="form-control" value="1" min="1">
+                    </div>
+                    <div class="form-group">
+                        <label>جودة الطباعة</label>
+                        <select id="printQuality" class="form-control">
+                            <option value="draft">مسودة</option>
+                            <option value="normal" selected>عادية</option>
+                            <option value="high">عالية</option>
+                            <option value="ultra">فائقة الجودة</option>
+                        </select>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" id="printCropMarks" checked>
+                        <label>إظهار علامات القص</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" id="printWatermark" checked>
+                        <label>إضافة علامة مائية</label>
+                    </div>
+                </div>
+            </div>
+            <div class="print-actions">
+                <button id="printNowBtn" class="modal-btn primary">
+                    <i class="fas fa-print"></i> طباعة الآن
+                </button>
+                <button id="printPdfBtn" class="modal-btn">
+                    <i class="fas fa-file-pdf"></i> حفظ كPDF
+                </button>
+                <button id="printPreviewBtn" class="modal-btn">
+                    <i class="fas fa-eye"></i> معاينة قبل الطباعة
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal" id="securityModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>فحص عناصر الأمان</h3>
+            <div class="security-checks">
+                <div class="check-item">
+                    <div class="check-icon pending">
+                        <i class="fas fa-circle-notch fa-spin"></i>
+                    </div>
+                    <div class="check-info">
+                        <h4>الهولوغرام الأمني</h4>
+                        <p>جاري التحقق من عنصر الهولوغرام</p>
+                    </div>
+                </div>
+                <div class="check-item">
+                    <div class="check-icon pending">
+                        <i class="fas fa-circle-notch fa-spin"></i>
+                    </div>
+                    <div class="check-info">
+                        <h4>العلامة فوق البنفسجية</h4>
+                        <p>جاري البحث عن العلامة UV</p>
+                    </div>
+                </div>
+                <div class="check-item">
+                    <div class="check-icon pending">
+                        <i class="fas fa-circle-notch fa-spin"></i>
+                    </div>
+                    <div class="check-info">
+                        <h4>الطباعة الدقيقة</h4>
+                        <p>جاري فحص الطباعة الدقيقة</p>
+                    </div>
+                </div>
+                <div class="check-item">
+                    <div class="check-icon pending">
+                        <i class="fas fa-circle-notch fa-spin"></i>
+                    </div>
+                    <div class="check-info">
+                        <h4>الشريحة الإلكترونية</h4>
+                        <p>جاري التحقق من الشريحة الذكية</p>
+                    </div>
+                </div>
+                <div class="check-item">
+                    <div class="check-icon pending">
+                        <i class="fas fa-circle-notch fa-spin"></i>
+                    </div>
+                    <div class="check-info">
+                        <h4>الباركود والرمز الشريطي</h4>
+                        <p>جاري فحص الرموز الشريطية</p>
+                    </div>
+                </div>
+            </div>
+            <div class="security-result" style="display: none;">
+                <div class="result-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h4>نتيجة الفحص الأمني</h4>
+                <div class="result-details">
+                    <p>تم فحص <span class="checks-passed">5</span> عناصر أمنية</p>
+                    <p class="result-message">البطاقة أصلية وجميع عناصر الأمان صحيحة</p>
+                </div>
+                <button class="modal-btn" id="securityCloseBtn">تم</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.5.3/signature_pad.min.js"></script>
+    <script src="smart-script.js"></script>
+</body>
+</html>
