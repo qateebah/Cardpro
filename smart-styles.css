@@ -1,0 +1,1988 @@
+:root {
+    --primary-color: #1a4b7a;
+    --secondary-color: #2a6da3;
+    --accent-color: #d4af37;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --light-color: #f8f9fa;
+    --dark-color: #343a40;
+    --text-color: #2c3e50;
+    --border-color: #dee2e6;
+    --shadow-color: rgba(0, 0, 0, 0.15);
+    --uv-color: #9c27b0;
+    --card-bg: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    --modal-bg: rgba(0, 0, 0, 0.7);
+    --transition: all 0.3s ease;
+}
+
+/* الأساسيات */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Tajawal', sans-serif;
+}
+
+body {
+    background-color: #e9ecef;
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* نظام البطاقة الذكية */
+.smart-id-system {
+    display: grid;
+    grid-template-columns: 300px 1fr 350px;
+    grid-gap: 20px;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* لوحة التحكم */
+.control-panel {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.panel-header {
+    padding: 15px;
+    background: var(--primary-color);
+    color: white;
+    text-align: center;
+}
+
+.panel-header h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.system-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.status-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-left: 8px;
+}
+
+.status-indicator.active {
+    background-color: var(--success-color);
+    box-shadow: 0 0 10px var(--success-color);
+}
+
+/* تبويبات التحكم */
+.tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--text-color);
+    transition: var(--transition);
+    border-bottom: 3px solid transparent;
+}
+
+.tab-btn.active {
+    border-bottom-color: var(--primary-color);
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.tab-btn i {
+    margin-left: 5px;
+}
+
+.tab-content {
+    padding: 15px;
+    display: none;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* أقسام لوحة التحكم */
+.section {
+    margin-bottom: 20px;
+}
+
+.section h3 {
+    font-size: 15px;
+    margin-bottom: 12px;
+    color: var(--primary-color);
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.action-btn {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.action-btn:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+.action-btn i {
+    margin-left: 8px;
+}
+
+.action-btn.danger {
+    background-color: var(--danger-color);
+}
+
+.action-btn.danger:hover {
+    background-color: #c82333;
+}
+
+.option-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+}
+
+.option-btn {
+    padding: 10px;
+    background-color: white;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 13px;
+}
+
+.option-btn:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.option-btn i {
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: var(--primary-color);
+}
+
+/* قاعدة البيانات */
+.database-controls {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.search-box {
+    flex: 1;
+    display: flex;
+    margin-left: 10px;
+}
+
+.search-box input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px 0 0 5px;
+    font-size: 14px;
+}
+
+.search-box button {
+    padding: 0 15px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+
+.database-table {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.database-table table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.database-table th,
+.database-table td {
+    padding: 10px;
+    text-align: right;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.database-table th {
+    background-color: #f1f3f5;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.database-table tr:hover {
+    background-color: #f8f9fa;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.page-btn {
+    width: 35px;
+    height: 35px;
+    margin: 0 3px;
+    background-color: white;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.page-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.page-btn:hover:not(.active) {
+    border-color: var(--primary-color);
+}
+
+/* الإعدادات */
+.settings-section {
+    margin-bottom: 20px;
+}
+
+.setting-item {
+    margin-bottom: 15px;
+}
+
+.setting-item label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: var(--primary-color);
+}
+
+.setting-item select,
+.setting-item input[type="text"],
+.setting-item input[type="number"],
+.setting-item input[type="range"] {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    float: left;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--success-color);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+/* المساعدة */
+.help-item {
+    margin-bottom: 15px;
+}
+
+.help-item h4 {
+    font-size: 14px;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.help-item p {
+    font-size: 13px;
+    color: #666;
+}
+
+.contact-info {
+    margin-top: 20px;
+}
+
+.contact-info p {
+    margin-bottom: 10px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.contact-info i {
+    margin-left: 10px;
+    color: var(--primary-color);
+    width: 20px;
+    text-align: center;
+}
+
+.system-info {
+    margin-top: 20px;
+    font-size: 13px;
+    color: #666;
+}
+
+.system-info p {
+    margin-bottom: 5px;
+}
+
+/* معاينة البطاقة */
+.card-preview {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    display: flex;
+    flex-direction: column;
+}
+
+.preview-header {
+    padding: 15px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.preview-header h3 {
+    font-size: 16px;
+    color: var(--primary-color);
+}
+
+.zoom-controls {
+    display: flex;
+    align-items: center;
+}
+
+.zoom-controls button {
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.zoom-controls button:hover {
+    border-color: var(--primary-color);
+}
+
+.zoom-controls span {
+    margin: 0 10px;
+    font-size: 14px;
+    min-width: 50px;
+    text-align: center;
+}
+
+.id-card-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    perspective: 1500px;
+}
+
+.id-card {
+    width: 100%;
+    max-width: 380px;
+    height: 240px;
+    background: var(--card-bg);
+    border-radius: 20px;
+    box-shadow: 0 15px 35px var(--shadow-color), 
+                0 5px 15px rgba(0,0,0,0.1),
+                inset 0 0 1px rgba(255,255,255,0.8);
+    padding: 18px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transform-style: preserve-3d;
+    border: 1px solid rgba(255,255,255,0.3);
+    backdrop-filter: blur(5px);
+}
+
+.id-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 45px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    z-index: 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.id-card.flipped {
+    transform: rotateY(180deg);
+}
+
+.id-card-front, .id-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    backface-visibility: hidden;
+    padding: inherit;
+    border-radius: inherit;
+}
+
+.id-card-back {
+    transform: rotateY(180deg);
+    display: none;
+    background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+    overflow: hidden;
+}
+
+.id-card.flipped .id-card-back {
+    display: block;
+}
+
+.id-card.flipped .id-card-front {
+    display: none;
+}
+
+/* رأس البطاقة */
+.id-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 1;
+    height: 45px;
+}
+
+.emblem {
+    width: 45px;
+    height: 45px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border: 2px solid var(--accent-color);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.emblem-shape {
+    width: 35px;
+    height: 35px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.emblem-inner {
+    width: 25px;
+    height: 25px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: var(--primary-color);
+    font-size: 10px;
+    content: "SA";
+}
+
+.emblem-text {
+    position: absolute;
+    white-space: nowrap;
+    font-size: 11px;
+    font-weight: bold;
+    color: white;
+    transform: rotate(-90deg) translateX(-55px);
+    transform-origin: left center;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.id-card-header h1 {
+    font-size: 18px;
+    color: white;
+    margin-right: 10px;
+    font-weight: 700;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    letter-spacing: 0.5px;
+}
+
+.rfid-chip {
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(135deg, #d4af37, #f9d423);
+    border-radius: 5px;
+    position: relative;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.rfid-chip::after {
+    content: "";
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    right: 6px;
+    bottom: 6px;
+    border: 1px solid rgba(0,0,0,0.3);
+    border-radius: 3px;
+}
+
+.rfid-chip:hover {
+    transform: scale(1.05);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+}
+
+/* جسم البطاقة */
+.id-card-body {
+    display: flex;
+    height: 130px;
+    margin-bottom: 10px;
+}
+
+.photo-section {
+    width: 110px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 10px;
+    position: relative;
+}
+
+.photo-container {
+    width: 90px;
+    height: 90px;
+    position: relative;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.photo-container:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+.photo-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #e0e0e0, #bdbdbd);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.photo-placeholder .camera-icon {
+    font-size: 24px;
+    color: #757575;
+    opacity: 0.7;
+}
+
+.photo-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.photo-overlay::after {
+    content: "صورة رسمية";
+    color: white;
+    font-size: 8px;
+    letter-spacing: 0.5px;
+}
+
+.qr-code-container {
+    width: 90px;
+    height: 35px;
+    position: relative;
+}
+
+.qr-code {
+    width: 100%;
+    height: 100%;
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.scan-me {
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 8px;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.info-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.biometric-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    padding: 5px;
+    background: rgba(26, 75, 122, 0.05);
+    border-radius: 5px;
+    border-left: 3px solid var(--primary-color);
+}
+
+.biometric-icon {
+    margin-left: 5px;
+    font-size: 16px;
+}
+
+.biometric-data {
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.biometric-status {
+    color: var(--success-color);
+    font-weight: bold;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 4px;
+    flex: 1;
+}
+
+.info-row {
+    display: flex;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.info-label {
+    font-weight: bold;
+    width: 85px;
+    color: var(--primary-color);
+    position: relative;
+}
+
+.info-label::after {
+    content: ":";
+    position: absolute;
+    left: -5px;
+}
+
+.info-value {
+    flex: 1;
+    text-align: left;
+    padding-left: 5px;
+    font-weight: 500;
+    word-break: break-word;
+}
+
+.digit-spacer {
+    margin: 0 2px;
+    position: relative;
+}
+
+.digit-spacer::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--primary-color);
+    opacity: 0.3;
+}
+
+/* تذييل البطاقة */
+.id-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 10px;
+    height: 40px;
+}
+
+.signature-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100px;
+}
+
+.signature-container {
+    width: 90px;
+    height: 25px;
+    position: relative;
+    margin-bottom: 2px;
+    background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+    border-radius: 3px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+.signature {
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="90" height="25" viewBox="0 0 90 25"><path d="M5,15 C10,5 20,20 25,10 C30,0 40,25 45,15 C50,5 60,20 65,10 C70,0 80,15 85,5" stroke="%231a4b7a" stroke-width="1.5" fill="none"/></svg>') no-repeat center;
+}
+
+.signature-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.7), rgba(255,255,255,0.3));
+}
+
+.signature-label {
+    font-size: 9px;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.barcode-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.barcode {
+    height: 35px;
+    width: 170px;
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 3px;
+    margin-bottom: 2px;
+}
+
+.barcode-number {
+    font-size: 9px;
+    letter-spacing: 1px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+/* ميزات الأمان */
+.security-features {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+}
+
+.hologram {
+    width: 35px;
+    height: 35px;
+    background: linear-gradient(45deg, #f00, #0f0, #00f, #f00);
+    border-radius: 50%;
+    opacity: 0.8;
+    margin-bottom: 5px;
+    animation: hologramEffect 8s infinite linear;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    position: relative;
+    cursor: pointer;
+}
+
+.hologram::after {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border: 1px solid rgba(255,255,255,0.5);
+    border-radius: 50%;
+}
+
+.uv-mark {
+    width: 25px;
+    height: 25px;
+    background: transparent;
+    border: 1px dashed var(--uv-color);
+    border-radius: 50%;
+    position: relative;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.uv-mark::after {
+    content: "UV";
+    position: absolute;
+    font-size: 9px;
+    color: var(--uv-color);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+}
+
+.show-uv .uv-mark {
+    opacity: 1;
+}
+
+.microprint {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    font-size: 4px;
+    color: transparent;
+    background: repeating-linear-gradient(90deg, #000, #000 1px, transparent 1px, transparent 3px);
+    background-clip: text;
+    -webkit-background-clip: text;
+    letter-spacing: 1px;
+    line-height: 1;
+    opacity: 0.5;
+    transform: rotate(-15deg);
+    transform-origin: left bottom;
+}
+
+/* منطقة NFC */
+.nfc-tap-area {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(42, 109, 163, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    z-index: 2;
+}
+
+.nfc-tap-area:hover {
+    background: rgba(42, 109, 163, 0.2);
+    transform: scale(1.05);
+}
+
+.nfc-icon {
+    font-size: 24px;
+    color: var(--primary-color);
+    margin-bottom: 2px;
+    transform: rotate(45deg);
+}
+
+.nfc-text {
+    font-size: 8px;
+    color: var(--primary-color);
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.2;
+}
+
+/* الجهة الخلفية للبطاقة */
+.magnetic-stripe {
+    height: 35px;
+    background: linear-gradient(to bottom, #000, #333, #000);
+    margin-bottom: 15px;
+    position: relative;
+    border-radius: 3px;
+}
+
+.magnetic-stripe::after {
+    content: "";
+    position: absolute;
+    top: 8px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: repeating-linear-gradient(to right, #fff, #fff 2px, transparent 2px, transparent 4px);
+}
+
+.contact-chip {
+    width: 50px;
+    height: 30px;
+    background: linear-gradient(135deg, #d4af37, #f9d423);
+    border-radius: 5px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.back-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.back-header h2 {
+    font-size: 16px;
+    color: var(--primary-color);
+}
+
+.issuing-logo {
+    width: 60px;
+    height: 30px;
+    background: var(--primary-color);
+    border-radius: 3px;
+    position: relative;
+}
+
+.issuing-logo::after {
+    content: "وزارة الداخلية";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 8px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.back-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.emergency-info {
+    margin-bottom: 10px;
+    padding: 8px;
+    background: rgba(220, 53, 69, 0.05);
+    border-radius: 5px;
+    border-left: 3px solid var(--danger-color);
+}
+
+.emergency-info h3 {
+    font-size: 12px;
+    color: var(--danger-color);
+    margin-bottom: 5px;
+}
+
+.emergency-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    margin-bottom: 3px;
+}
+
+.additional-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+    margin-bottom: 10px;
+}
+
+.info-box {
+    padding: 5px;
+    background: rgba(26, 75, 122, 0.05);
+    border-radius: 5px;
+}
+
+.info-box h4 {
+    font-size: 10px;
+    color: var(--primary-color);
+    margin-bottom: 3px;
+}
+
+.info-box p {
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.issuing-info {
+    margin-top: auto;
+}
+
+.issuing-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    margin-bottom: 3px;
+}
+
+.back-footer {
+    margin-top: 10px;
+    padding-top: 5px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+}
+
+.terms {
+    font-size: 7px;
+    line-height: 1.3;
+    color: #666;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.verification-url {
+    display: flex;
+    justify-content: space-between;
+    font-size: 9px;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.back-security {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.laser-engraving {
+    width: 80px;
+    height: 20px;
+    background: repeating-linear-gradient(180deg, transparent, transparent 1px, rgba(26, 75, 122, 0.1) 1px, rgba(26, 75, 122, 0.1) 2px);
+    margin-right: 10px;
+    transform: rotate(-5deg);
+}
+
+.ghost-image {
+    width: 40px;
+    height: 40px;
+    background: rgba(26, 75, 122, 0.1);
+    border-radius: 3px;
+    position: relative;
+}
+
+.ghost-image::after {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border: 1px dashed rgba(26, 75, 122, 0.3);
+}
+
+/* عناصر تحكم البطاقة */
+.card-controls {
+    padding: 15px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+}
+
+.control-btn {
+    padding: 8px 12px;
+    background-color: white;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+}
+
+.control-btn:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.control-btn i {
+    margin-left: 5px;
+}
+
+/* محرر البيانات */
+.data-editor {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    display: flex;
+    flex-direction: column;
+}
+
+.editor-header {
+    padding: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.editor-header h3 {
+    font-size: 16px;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.editor-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.editor-tab {
+    padding: 10px 15px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--text-color);
+    transition: var(--transition);
+    border-bottom: 3px solid transparent;
+}
+
+.editor-tab.active {
+    border-bottom-color: var(--primary-color);
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.editor-content {
+    padding: 15px;
+    flex: 1;
+    overflow-y: auto;
+    display: none;
+}
+
+.editor-content.active {
+    display: block;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: var(--primary-color);
+}
+
+.form-control {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 14px;
+    transition: var(--transition);
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(26, 75, 122, 0.1);
+}
+
+.form-row {
+    display: flex;
+    margin: 0 -7.5px;
+}
+
+.form-row .form-group {
+    flex: 1;
+    margin: 0 7.5px;
+}
+
+.photo-upload {
+    margin-top: 20px;
+}
+
+.upload-area {
+    border: 2px dashed var(--border-color);
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.upload-area:hover {
+    border-color: var(--primary-color);
+}
+
+.upload-area i {
+    font-size: 30px;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    display: block;
+}
+
+.upload-area span {
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+.upload-area input[type="file"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.signature-pad {
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    height: 150px;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+#signatureCanvas {
+    width: 100%;
+    height: 100%;
+    background-color: #f8f9fa;
+}
+
+.signature-controls {
+    display: flex;
+    justify-content: space-between;
+}
+
+.signature-controls button {
+    padding: 5px 10px;
+    background-color: white;
+    border: 1px solid var(--border-color);
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: var(--transition);
+}
+
+.signature-controls button:hover {
+    background-color: #f1f3f5;
+}
+
+.editor-footer {
+    padding: 15px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+}
+
+.editor-btn {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+}
+
+.editor-btn i {
+    margin-left: 5px;
+}
+
+.editor-btn.primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.editor-btn.primary:hover {
+    background-color: var(--secondary-color);
+}
+
+.editor-btn.success {
+    background-color: var(--success-color);
+    color: white;
+}
+
+.editor-btn.success:hover {
+    background-color: #218838;
+}
+
+/* النوافذ المنبثقة */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--modal-bg);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal-content {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    animation: modalFadeIn 0.3s ease-out;
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-size: 24px;
+    color: #666;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.close-modal:hover {
+    color: var(--danger-color);
+}
+
+.modal h3 {
+    padding: 20px 20px 10px;
+    font-size: 18px;
+    color: var(--primary-color);
+    text-align: center;
+}
+
+.modal-btn {
+    padding: 10px 20px;
+    margin: 15px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: var(--transition);
+    display: block;
+    width: calc(100% - 30px);
+}
+
+.modal-btn:hover {
+    background-color: var(--secondary-color);
+}
+
+/* NFC Modal */
+.nfc-animation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    position: relative;
+    margin: 20px 0;
+}
+
+.nfc-card {
+    width: 80px;
+    height: 50px;
+    background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nfc-card::after {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 1px dashed var(--primary-color);
+    border-radius: 3px;
+}
+
+.nfc-reader {
+    width: 100px;
+    height: 20px;
+    background-color: #333;
+    border-radius: 3px;
+    position: relative;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+.nfc-waves {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 2px solid var(--primary-color);
+    opacity: 0;
+    animation: nfcPulse 2s infinite;
+}
+
+.nfc-waves:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.nfc-waves:nth-child(3) {
+    animation-delay: 1s;
+}
+
+.nfc-data-display {
+    margin: 20px;
+}
+
+.data-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.data-label {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.data-value {
+    color: var(--text-color);
+}
+
+/* Biometric Modal */
+.biometric-options {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.bio-option {
+    padding: 15px;
+    margin: 0 10px;
+    background-color: white;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100px;
+}
+
+.bio-option.active {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(26, 75, 122, 0.1);
+}
+
+.bio-option i {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.bio-option span {
+    font-size: 12px;
+}
+
+.biometric-scanner {
+    margin: 20px;
+    display: none;
+}
+
+.biometric-scanner.active {
+    display: block;
+}
+
+.scanner-animation {
+    position: relative;
+    height: 200px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.fingerprint-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 120px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M30,40 Q50,30 70,40 Q90,50 70,60 Q50,70 30,60 Q10,50 30,40" fill="none" stroke="%231a4b7a" stroke-width="2"/><path d="M30,50 Q50,40 70,50 Q90,60 70,70 Q50,80 30,70 Q10,60 30,50" fill="none" stroke="%231a4b7a" stroke-width="2"/></svg>') no-repeat center;
+}
+
+.scan-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(to bottom, transparent, var(--primary-color), transparent);
+    animation: scanAnimation 2s linear infinite;
+}
+
+.scanner-instructions {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.scanner-instructions p {
+    font-size: 14px;
+    color: var(--primary-color);
+}
+
+.scanner-progress {
+    height: 5px;
+    background-color: #e9ecef;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: var(--primary-color);
+    width: 0%;
+    transition: width 0.3s;
+}
+
+.camera-preview {
+    position: relative;
+    height: 200px;
+    background-color: #333;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+#faceCamera {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.face-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="40" r="20" fill="none" stroke="%23ffffff" stroke-width="1" stroke-dasharray="5,5"/></svg>') no-repeat center;
+    opacity: 0.5;
+}
+
+.iris-animation {
+    position: relative;
+    height: 200px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.eye-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 50px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 60"><path d="M10,30 Q50,0 90,30 Q50,60 10,30" fill="%231a4b7a"/><circle cx="50" cy="30" r="15" fill="%23000"/><circle cx="50" cy="30" r="5" fill="%23fff"/></svg>') no-repeat center;
+}
+
+.iris-scan {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    animation: irisScan 3s linear infinite;
+}
+
+.biometric-result {
+    text-align: center;
+    padding: 20px;
+    display: none;
+}
+
+.result-icon {
+    font-size: 50px;
+    margin-bottom: 15px;
+}
+
+.result-icon.success {
+    color: var(--success-color);
+}
+
+.biometric-result h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.biometric-result p {
+    font-size: 14px;
+    color: var(--text-color);
+    margin-bottom: 20px;
+}
+
+/* QR Modal */
+.qr-generator {
+    display: flex;
+    margin: 20px;
+}
+
+.qr-preview {
+    width: 160px;
+    height: 160px;
+    background-color: white;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 20px;
+}
+
+.qr-controls {
+    flex: 1;
+}
+
+.qr-controls .form-group {
+    margin-bottom: 15px;
+}
+
+/* Print Modal */
+.print-options {
+    display: flex;
+    margin: 20px;
+}
+
+.print-preview {
+    width: 200px;
+    height: 300px;
+    background-color: white;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.print-settings {
+    flex: 1;
+}
+
+.print-settings .form-group {
+    margin-bottom: 15px;
+}
+
+.form-check {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.form-check input {
+    margin-left: 10px;
+}
+
+.print-actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    border-top: 1px solid var(--border-color);
+}
+
+.print-actions button {
+    flex: 1;
+    margin: 0 5px;
+}
+
+/* Security Modal */
+.security-checks {
+    margin: 20px;
+}
+
+.check-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.check-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 15px;
+    flex-shrink: 0;
+}
+
+.check-icon.pending {
+    color: var(--warning-color);
+}
+
+.check-icon.success {
+    color: var(--success-color);
+    background-color: rgba(40, 167, 69, 0.1);
+}
+
+.check-icon.failed {
+    color: var(--danger-color);
+    background-color: rgba(220, 53, 69, 0.1);
+}
+
+.check-info {
+    flex: 1;
+}
+
+.check-info h4 {
+    font-size: 14px;
+    margin-bottom: 3px;
+    color: var(--primary-color);
+}
+
+.check-info p {
+    font-size: 12px;
+    color: #666;
+}
+
+.security-result {
+    text-align: center;
+    padding: 20px;
+    display: none;
+}
+
+.security-result .result-icon {
+    color: var(--primary-color);
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.security-result h4 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.result-details {
+    margin-bottom: 20px;
+}
+
+.result-details p {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.checks-passed {
+    font-weight: bold;
+    color: var(--success-color);
+}
+
+.result-message {
+    font-size: 15px;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* Animations */
+@keyframes hologramEffect {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes nfcPulse {
+    0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+    50% { opacity: 0.5; }
+    100% { transform: translate(-50%, -50%) scale(1.5); opacity: 0; }
+}
+
+@keyframes scanAnimation {
+    0% { top: 0; }
+    100% { top: 100%; }
+}
+
+@keyframes irisScan {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(42, 109, 163, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(42, 109, 163, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(42, 109, 163, 0); }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .smart-id-system {
+        grid-template-columns: 280px 1fr 320px;
+    }
+}
+
+@media (max-width: 992px) {
+    .smart-id-system {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+    }
+    
+    .control-panel, .card-preview, .data-editor {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .print-options, .qr-generator {
+        flex-direction: column;
+    }
+    
+    .print-preview, .qr-preview {
+        margin-left: 0;
+        margin-bottom: 20px;
+        width: 100%;
+    }
+    
+    .option-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 576px) {
+    .form-row {
+        flex-direction: column;
+        margin: 0;
+    }
+    
+    .form-row .form-group {
+        margin: 0 0 15px 0;
+    }
+    
+    .modal-content {
+        max-height: 80vh;
+    }
+    
+    .editor-footer {
+        flex-direction: column;
+    }
+    
+    .editor-btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
